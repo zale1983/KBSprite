@@ -1,10 +1,10 @@
 UserVar hwnd=1111 "Background Window Handle"
 //long run micro need a mutex
-Dim mutex
-mutex=false
-Dim colorarea
+Global mutex
+mutex=1
+Global colorarea
 colorarea=Array(0,0,1024,768,"1317B")
-Dim Df1,Df2,Df3,Df3t,Df4,Df4t,Df5,Df5t,Df6,Df6t,Df7,Df8,Df9,Df10
+Global Df1,Df2,Df3,Df3t,Df4,Df4t,Df5,Df5t,Df6,Df6t,Df7,Df8,Df9,Df10
 //0 for undefined
 //f1 short run command, no mutex
 //f2 short run command, no nutex 
@@ -74,6 +74,10 @@ If Df10 > 0 Then
 BeginThread F10
 End If
 Delay 10
+Rem main
+//never end main thread
+Delay 5000
+Goto main
 Sub F1()
 //findcolor, then next
   While true
@@ -111,7 +115,7 @@ End Sub
 Sub F3()
   //skill attack micro, find target, spell skill and wait for finish, else try next round every 1 second
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
       XYf3 = Plugin.BkgndColor.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
@@ -119,13 +123,13 @@ Sub F3()
       colorf3=Split(XYf3,"|")
       Xf3=Clng(color(0)): Yf3=Clng(color(1))
       If Xf3>0 and Yf3>0 Then
-        mutex=true
+        mutex=1
         Plugin.Bkgnd.KeyPress(hwnd,114)
         //wait for spell finish
         For Df3t
           Delay 1000
         Next
-        mutex=false
+        mutex=0
         //wait for next round
         For Df3
           Delay 1000
@@ -141,16 +145,16 @@ End Sub
 Sub F4()
 //buffer micro, press and wait for finish
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
-      mutex=true
+      mutex=1
       Plugin.Bkgnd.KeyPress(hwnd,115)
       //wait for spell finish
       For Df4t
         Delay 1000
       Next
-      mutex=false
+      mutex=0
       //wait for next round
       For Df4
         Delay 1000
@@ -161,16 +165,16 @@ End Sub
 Sub F5()
 //buffer micro 2, press and wait for finish
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
-      mutex=true
+      mutex=1
       Plugin.Bkgnd.KeyPress(hwnd,116)
       //wait for spell finish
       For Df5t
         Delay 1000
       Next
-      mutex=false
+      mutex=0
       //wait for next round
       For Df5
         Delay 1000
@@ -180,15 +184,15 @@ End Sub
 Sub F6()
 //micro 1, press and wait for finish
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
-      mutex=true
+      mutex=1
       Plugin.Bkgnd.KeyPress(hwnd,117)
       For Df6t
         Delay 1000
       Next
-      mutex=false
+      mutex=0
       For Df6
         Delay 1000
       Next
@@ -198,7 +202,7 @@ End Sub
 Sub F7()
 //micro 2, press and wait for finish
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
       Plugin.Bkgnd.KeyPress(hwnd,118)
@@ -211,7 +215,7 @@ End Sub
 Sub F8()
 //micro3, press and wait for finish
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
       Plugin.Bkgnd.KeyPress(hwnd,119)
@@ -224,7 +228,7 @@ End Sub
 Sub F9()
 //micro4, press and wait for finish
   While true
-    If mutex Then
+    If mutex=1 Then
       Delay 1000
     Else
       Plugin.Bkgnd.KeyPress(hwnd,120)
@@ -244,7 +248,7 @@ Sub F10()
       For Df5
         Delay 1000
       Next
-    End If`
+    End If
   Wend
 End Sub
 
