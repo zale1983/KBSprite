@@ -63,11 +63,12 @@ Delay 10
 Sub F1()
 //findcolor, then next
   While true
-    XY = Plugin.BkgndColor.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
-    Dim color
-    color=Split(XY,"|")
-    X=Clng(color(0)): Y=Clng(color(1))
-    If X<0 and Y<0 Then
+    XYf1 = Plugin.BkgndColor.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
+    Dim colorf1
+    colorf1=Split(XYf1,"|")
+    Xf1=Clng(colorf1(0)): Yf1=Clng(colorf1(1))
+    //if not found, try next
+    If Xf1<0 and Yf1<0 Then
       Plugin.Bkgnd.KeyPress(hwnd,112)
     End If
     For Df1
@@ -87,11 +88,11 @@ End Sub
 Sub F3()
 //skill attack micro, find target, presss and wait for finish, then press again
   While true
-    XY = Plugin.BkgndColor.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
-    Dim color
-    color=Split(XY,"|")
-    X=Clng(color(0)): Y=Clng(color(1))
-    If X>0 and Y>0 Then
+    XYf3 = Plugin.BkgndColor.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
+    Dim colorf3
+    colorf3=Split(XY,"|")
+    Xf3=Clng(color(0)): Yf3=Clng(color(1))
+    If Xf3>0 and Yf3>0 Then
       Plugin.Bkgnd.KeyPress(hwnd,114)
       //wait for spell finish
       For Df3
