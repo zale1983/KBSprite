@@ -25,6 +25,8 @@ Mf7=0
 Mf8=0
 Mf9=0
 Mf10=71
+Dim colorarea
+colorarea=Array(0,0,1024,768,"1317B")
 Function FindTarget()
   XY = Plugin.BkgndColor.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
   Dim color,result(2)
