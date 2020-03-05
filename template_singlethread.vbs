@@ -1,7 +1,7 @@
 UserVar hwnd=111 "background windows handle"
 Dim tt
 tt=0
-Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10
+Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
 Df1=1
 Df2=1
 Df3=4
@@ -12,6 +12,7 @@ Df7=0
 Df8=0
 Df9=0
 Df10=5
+Dfdebug=0
 Dim Mf1,Mf2,Mf3,Mf4,Mf5,Mf6,Mf7,Mf8,Mf9,Mf10
 Mf1=0
 Mf2=0
@@ -95,5 +96,13 @@ If Mf10>0 and Df10>0 and (tt Mod Mf10)=0 Then
   Plugin.Bkgnd.KeyPress(hwnd,118)
   Delay Df7*1000
   tt=tt+Df7
+End If
+//reset timer after 1 hours, 3300<tt<3600 prime number
+If tt>=3491 Then
+  tt=0
+End If
+If Dfdebug>0 Then
+  Delay Dfdebug*1000
+  tt=tt+Dfdebug
 End If
 Goto run
