@@ -3,11 +3,11 @@ Dim tt
 tt=0
 Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
 Df1=1
-Df2=1
+Df2=2
 Df3=4
 Df4=0
 Df5=0
-Df6=0
+Df6=2
 Df7=0
 Df8=0
 Df9=0
@@ -19,7 +19,8 @@ Mf2=0
 Mf3=0
 Mf4=617
 Mf5=217
-Mf6=0
+//consider tt reset condition
+Mf6=1709
 Mf7=0
 Mf8=0
 Mf9=0
@@ -30,7 +31,7 @@ Function FindTarget()
   color=Split(XY,"|")
   X=Clng(color(0)): Y=Clng(color(1))
   result(0)=X
-  result(2)=Y
+  result(1)=Y
   FindTarget=result
 End Function
 Rem run
@@ -69,7 +70,7 @@ If Mf5>0 and Df5>0 and (tt Mod Mf5)=0 Then
   Delay Df5*1000
   tt=tt+Df5
 End If
-//30 minutes counter, 1740<Mf6<1800 prime number
+//30 minutes counter, 1680<Mf6<1740 prime number
 If Mf6>0 and Df6>0 and (tt Mod Mf6)=0 Then
   Plugin.Bkgnd.KeyPress(hwnd,117)
   Delay Df6*1000
