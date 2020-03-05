@@ -7,24 +7,24 @@ Df2=2
 Df3=4
 Df4=0
 Df5=0
-Df6=2
+Df6=4
 Df7=0
 Df8=0
 Df9=0
-Df10=5
+Df10=0
 Dfdebug=0
 Dim Mf1,Mf2,Mf3,Mf4,Mf5,Mf6,Mf7,Mf8,Mf9,Mf10
 Mf1=0
 Mf2=0
 Mf3=0
-Mf4=617
-Mf5=217
+Mf4=0
+Mf5=0
 //consider tt reset condition
 Mf6=1709
 Mf7=0
 Mf8=0
 Mf9=0
-Mf10=71
+Mf10=0
 Dim colorarea
 colorarea=Array(0,0,1024,768,"1317B")
 Function FindTarget()

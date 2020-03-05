@@ -2,12 +2,12 @@ UserVar hwnd=111 "background windows handle"
 Dim tt
 tt=0
 Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
-Df1=1
-Df2=2
-Df3=4
-Df4=0
-Df5=0
-Df6=2
+Df1=0
+Df2=0
+Df3=0
+Df4=2
+Df5=6
+Df6=12
 Df7=0
 Df8=0
 Df9=0

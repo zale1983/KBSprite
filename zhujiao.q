@@ -2,13 +2,13 @@ UserVar hwnd=111 "background windows handle"
 Dim tt
 tt=0
 Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
-Df1=1
-Df2=2
-Df3=4
-Df4=0
+Df1=0
+Df2=0
+Df3=0
+Df4=2
 Df5=0
-Df6=2
-Df7=0
+Df6=0
+Df7=11
 Df8=0
 Df9=0
 Df10=5
@@ -17,11 +17,13 @@ Dim Mf1,Mf2,Mf3,Mf4,Mf5,Mf6,Mf7,Mf8,Mf9,Mf10
 Mf1=0
 Mf2=0
 Mf3=0
+//shifang every 10 second
 Mf4=617
-Mf5=217
+Mf5=0
 //consider tt reset condition
-Mf6=1709
-Mf7=0
+Mf6=0
+//jinghua,junheng,zhiyu every 30 second
+Mf7=37
 Mf8=0
 Mf9=0
 Mf10=71
