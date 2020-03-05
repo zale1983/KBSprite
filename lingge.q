@@ -1,6 +1,7 @@
 UserVar hwnd=111 "background windows handle"
 Dim tt
 tt=0
+//lingge enable f4 jixue buffer, f5 5 minutes buffer micro, f6 30 minutes buffer, f10 pickup micro
 Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
 Df1=0
 Df2=0

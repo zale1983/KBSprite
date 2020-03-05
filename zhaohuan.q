@@ -1,6 +1,7 @@
 UserVar hwnd=111 "background windows handle"
 Dim tt
 tt=0
+//zhaohuan enable f1 select target, f2 zhaohuanshou attack, f3 skill attack, f6 30 minutes zhaohuashou buffer
 Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
 Df1=1
 Df2=2
