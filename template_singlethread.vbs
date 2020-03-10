@@ -1,30 +1,39 @@
 UserVar hwnd=111 "background windows handle"
-Dim tt
-tt=0
-Dim Df1,Df2,Df3,Df4,Df5,Df6,Df7,Df8,Df9,Df10,Dfdebug
-Df1=1
-Df2=2
-Df3=4
-Df4=0
-Df5=0
-Df6=2
-Df7=0
-Df8=0
-Df9=0
-Df10=5
-Dfdebug=0
-Dim Mf1,Mf2,Mf3,Mf4,Mf5,Mf6,Mf7,Mf8,Mf9,Mf10
-Mf1=0
-Mf2=0
-Mf3=0
-Mf4=617
-Mf5=217
+Dim tf1,tf2,tf3,tf4,tf5,tf6,tf7,tf8,tf9,tf10
+tf1=DateAdd('s',-mf1,Now)
+tf2=DateAdd('s',-mf2,Now)
+tf3=DateAdd('s',-mf3,Now)
+tf4=DateAdd('s',-mf4,Now)
+tf5=DateAdd('s',-mf5,Now)
+tf6=DateAdd('s',-mf6,Now)
+tf7=DateAdd('s',-mf7,Now)
+tf8=DateAdd('s',-mf8,Now)
+tf9=DateAdd('s',-mf9,Now)
+tf10=DateAdd('s',-mf10,Now)
+Dim df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,dfdebug
+df1=1
+df2=2
+df3=4
+df4=0
+df5=0
+df6=2
+df7=0
+df8=0
+df9=0
+df10=5
+dfdebug=0
+Dim mf1,mf2,mf3,mf4,mf5,mf6,mf7,mf8,mf9,mf10
+mf1=0
+mf2=0
+mf3=0
+mf4=617
+mf5=217
 //consider tt reset condition
-Mf6=1709
-Mf7=0
-Mf8=0
-Mf9=0
-Mf10=71
+mf6=1709
+mf7=0
+mf8=0
+mf9=0
+mf10=71
 Dim colorarea
 colorarea=Array(0,0,1024,768,"1317B")
 Function FindTarget()
@@ -36,82 +45,97 @@ Function FindTarget()
   result(1)=Y
   FindTarget=result
 End Function
+//ready wait
+Delay 5000
 Rem run
 //f1-f3, find target / call
 //key f1
-If Df1>0 Then
+If df1>0 Then
   XY=FindTarget()
   If XY(0)<0 and XY(1)<0 Then
     Plugin.Bkgnd.KeyPress(hwnd,112)
-    Delay Df1*1000
-    tt=tt+Df1
+    Delay df1*1000
   End If
 End If
 //key f2
-If Df2>0 Then
+If df2>0 Then
   XY=FindTarget()
   If XY(0)>0 and XY(1)>0 Then
     Plugin.Bkgnd.KeyPress(hwnd,113)
-    Delay Df2*1000
-    tt=tt+Df2
+    Delay df2*1000
   End If
 End If
 //key f3
-If Df3>0 Then
+If df3>0 Then
   XY=FindTarget()
-  If XY(0)>0 and XY(1)>0 and Df3>0 Then
+  If XY(0)>0 and XY(1)>0 and df3>0 Then
     Plugin.Bkgnd,KeyPress(hwnd,114)
-    Delay Df3*1000
-    tt=tt+Df3
+    Delay df3*1000
   End If
 End If
-//10 minutes counter, 600<Mf4<660 prime number
+//10 minutes counter, 600<mf4<660 prime number
 //key f4
-If Df4>0 and Mf4>0 and (tt Mod Mf4)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,115)
-  Delay Df4*1000
-  tt=tt+Df4
+If df4>0 Then
+  tf4=DateDiff('s',tf4,Now)
+  If tf4 > mf4 Then
+    Plugin.Bkgnd.KeyPress(hwnd,115)
+    Delay df4*1000
+    tf4=Now
+  End If
 End If
-//5 minutes counter, 240<Mf5<300 prime number
-If Df5>0 and Mf5>0 and (tt Mod Mf5)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,116)
-  Delay Df5*1000
-  tt=tt+Df5
+//5 minutes counter, 240<mf5<300 prime number
+If df5>0 Then
+  tf5=DateDiff('s',tf5,Now)
+  If tf5 > mf5 Then
+    Plugin.Bkgnd.KeyPress(hwnd,116)
+    Delay df5*1000
+    tf5=Now
+  End If
 End If
-//30 minutes counter, 1680<Mf6<1740 prime number
-If Df6>0 and Mf6>0 and (tt Mod Mf6)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,117)
-  Delay Df6*1000
-  tt=tt+Df6
+//30 minutes counter, 1680<mf6<1740 prime number
+If df6>0 Then
+  tf6=DateDiff('s',tf6,Now)
+  If tf6 > mf6 Then
+    Plugin.Bkgnd.KeyPress(hwnd,117)
+    Delay df6*1000
+    tf6=Now
+  End If
 End If
 //undefined counter,
-If Df7>0 and Mf7>0 and (tt Mod Mf7)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,118)
-  Delay Df7*1000
-  tt=tt+Df7
+If df7>0 Then
+  tf7=DateDiff('s',tf7,Now)
+  If tf7>mf7 Then
+    Plugin.Bkgnd.KeyPress(hwnd,118)
+    Delay df7*1000
+    tf7=Now
+  End If
 End If
-If Df8>0 and Mf8>0 and (tt Mod Mf8)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,119)
-  Delay Df8*1000
-  tt=tt+Df8
+If df8>0 Then
+  tf8=DateDiff('s',tf8,Now)
+  If tf8>mf8 Then
+    Plugin.Bkgnd.KeyPress(hwnd,119)
+    Delay df8*1000
+    tf8=Now
+  End If
 End If
-If Df9>0 and Mf9>0 and (tt Mod Mf9)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,120)
-  Delay Df9*1000
-  tt=tt+Df9
+If df9>0 Then
+  tf9=DateDiff('s',tf9,Now) 
+  If tf9 > mf9 Then
+    Plugin.Bkgnd.KeyPress(hwnd,120)
+    Delay df9*1000
+    tf9=Now
+  End If
 End If
-//pickup counter, 60<Mf10<120,
-If Df10>0 and Mf10>0 and (tt Mod Mf10)=0 Then
-  Plugin.Bkgnd.KeyPress(hwnd,118)
-  Delay Df7*1000
-  tt=tt+Df7
+//pickup counter, 60<mf10<120,
+If df10>0 Then
+  tf10=DateDiff('s',tf10,Now)
+  If tf10 > mf10 Then
+    Plugin.Bkgnd.KeyPress(hwnd,118)
+    Delay df7*1000
+    tf10=Now
+  End If
 End If
-//reset timer after 1 hours, 3300<tt<3600 prime number
-If tt>=3491 Then
-  tt=0
-End If
-If Dfdebug>0 Then
-  Delay Dfdebug*1000
-  tt=tt+Dfdebug
+If dfdebug>0 Then
+  Delay dfdebug*1000
 End If
 Goto run
