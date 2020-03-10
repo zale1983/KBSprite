@@ -55,24 +55,21 @@ If df1>0 Then
   If XY(0)<0 and XY(1)<0 Then
     Plugin.Bkgnd.KeyPress(hwnd,112)
     Delay df1*1000
+    //if no attackable target find, goto buffer section
+    Goto buffer
   End If
 End If
 //key f2
 If df2>0 Then
-  XY=FindTarget()
-  If XY(0)>0 and XY(1)>0 Then
     Plugin.Bkgnd.KeyPress(hwnd,113)
     Delay df2*1000
-  End If
 End If
 //key f3
 If df3>0 Then
-  XY=FindTarget()
-  If XY(0)>0 and XY(1)>0 and df3>0 Then
     Plugin.Bkgnd,KeyPress(hwnd,114)
     Delay df3*1000
-  End If
 End If
+Rem buffer
 //10 minutes counter, 600<mf4<660 prime number
 //key f4
 If df4>0 Then
