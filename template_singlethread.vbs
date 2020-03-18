@@ -1,14 +1,16 @@
 UserVar hwnd=111 "background windows handle"
-Dim fkdelay,fkspell,fktimer,fkattack,fkenhance,fkint,colorarea
+Dim fkdelay,fkspell,fktimer,fkas,fkae,fkes,fkee,fkint,colorarea
 fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
 fkspell=Array(0,0,0,0,0,0,0,0,0,0)
 fktimer=Array(0,0,0,0,0,0,0,0,0,0)
 //interupt timer, buffer check every 13 second
 fkint=Array(13,Now)
-//end index
-fkattack=3
-//start index
-fkenhance=4
+//attack index
+fkas=1
+fkae=3
+//enhancement index
+fkes=4
+fkee=8
 colorarea=Array(0,0,1024,768,"1317B")
 //f1, find target
 //f2-f4, target attack, skill attack
@@ -20,9 +22,9 @@ fkspell(1)=0.5
 fkspell(2)=2
 fkdelay(4)=1737
 fkspell(4)=4
-fkdelay(9)=60
 fkspell(9)=1
-For i=fkenhance to 9 step 1
+//init key timer
+For i=0 to 9 step 1
   fktimer(i)=DateAdd("s",-fkdelay(i),Now)
 Next
 Function FindTarget()
@@ -37,7 +39,7 @@ End Function
 //ready wait
 Delay 2000
 Rem ENHANCE
-For i=fkenhance to 9 step 1
+For i=fkes to fkee step 1
   If fkdelay(i)>0 and DateDiff("s",fktimer(i),Now)>fkdelay(i) Then
     //keymap f1 is 112, index start form 0
     Plugin.Bkgnd.KeyPress hwnd,111+i+1
@@ -53,12 +55,13 @@ If DateDiff("s",fkint(1),Now)>fkint(0) Then
 End If
 txy=FindTarget()
 If txy(0)<0 and txy(1) <0 Then
-  Delay fkspell(0)*1000
+  //if no target find, pickup, wait, then find next
+  Plugin.Bkgnd.KeyPress hwnd, 121
+  Delay fkspell(9)*1000
   Plugin.Bkgnd.KeyPress hwnd, 112
-  //if no target find goto start to find next
   Goto RUN
 End If
-For i=1 to fkattack step 1
+For i=fkas to fkae step 1
   If fkspell(i)>0 Then
   Plugin.Bkgnd.KeyPress hwnd, 111+i+1
   Delay fkspell(i)*1000
