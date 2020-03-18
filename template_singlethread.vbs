@@ -1,5 +1,5 @@
 UserVar hwnd=111 "background windows handle"
-Dim fkdelay,fkspell
+Dim fkdelay,fkspell,fkattack,fkenhance
 fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
 fkspell=Array(0,0,0,0,0,0,0,0,0,0)
 //f1, find target
@@ -14,6 +14,8 @@ fkdelay(4)=1737
 fkspell(4)=4
 fkdelay(9)=60
 fkspell(9)=1
+fkattck=3
+fkenhance=fkattack+1
 Dim fktimer(10)
 For i=0 to 9 step 1
   fktimer(i)=DateAdd("s",-fkdelay(i),Now)
@@ -32,7 +34,7 @@ End Function
 //ready wait
 Delay 2000
 Rem RUN
-For i=4 to 9 step 1
+For i=fkenhance to 9 step 1
   If fkdelay(i)>0 and DateDiff("s",fktimer(i),Now)>fkdelay(i) Then
     //keymap f1 is 112, index start form 0
     Plugin.Bkgnd.KeyPress hwnd,111+i+1
@@ -48,7 +50,7 @@ If txy(0)<0 and txy(1) <0 Then
   Plugin.Bkgnd.KeyPress hwnd, 112
   Goto FIND
 End If
-For i=1 to 3 step 1
+For i=1 to fkattack step 1
   If fkspell(i)>0 Then
   Plugin.Bkgnd.KeyPress hwnd, 111+i+1
   Delay fkspell(i)*1000
