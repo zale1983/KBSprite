@@ -1,7 +1,13 @@
 UserVar hwnd=111 "background windows handle"
-Dim fkdelay,fkspell,fkattack,fkenhance
+Dim fkdelay,fkspell,fktimer,fkattack,fkenhance,colorarea
 fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
 fkspell=Array(0,0,0,0,0,0,0,0,0,0)
+fktimer=Array(0,0,0,0,0,0,0,0,0,0)
+//end index
+fkattack=3
+//start index
+fkenhance=4
+colorarea=Array(0,0,1024,768,"1317B")
 //f1, find target
 //f2-f4, target attack, skill attack
 //f5-f9, enhancement skill
@@ -14,14 +20,9 @@ fkdelay(4)=1737
 fkspell(4)=4
 fkdelay(9)=60
 fkspell(9)=1
-fkattck=3
-fkenhance=fkattack+1
-Dim fktimer(10)
-For i=0 to 9 step 1
+For i=fkenhance to 9 step 1
   fktimer(i)=DateAdd("s",-fkdelay(i),Now)
 Next
-Dim colorarea
-colorarea=Array(0,0,1024,768,"1317B")
 Function FindTarget()
   XY = Plugin.Bkgnd.FindColor hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4)
   Dim color,result(2)
