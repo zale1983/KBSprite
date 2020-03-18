@@ -3,8 +3,8 @@ Dim fkdelay,fkspell,fktimer,fkattack,fkenhance,fkint,colorarea
 fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
 fkspell=Array(0,0,0,0,0,0,0,0,0,0)
 fktimer=Array(0,0,0,0,0,0,0,0,0,0)
-//interupt timer, buffer check every 10 second
-fkint=Array(10,Now)
+//interupt timer, buffer check every 13 second
+fkint=Array(13,Now)
 //end index
 fkattack=3
 //start index
@@ -48,7 +48,8 @@ For i=fkenhance to 9 step 1
 Next
 Rem RUN
 If DateDiff("s",fkint(1),Now)>fkint(0) Then
-    Goto ENHANCE
+  fkint(1)=Now
+  Goto ENHANCE
 End If
 txy=FindTarget()
 If txy(0)<0 and txy(1) <0 Then
