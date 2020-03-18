@@ -1,8 +1,10 @@
 UserVar hwnd=111 "background windows handle"
-Dim fkdelay,fkspell,fktimer,fkattack,fkenhance,colorarea
+Dim fkdelay,fkspell,fktimer,fkattack,fkenhance,fkint,colorarea
 fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
 fkspell=Array(0,0,0,0,0,0,0,0,0,0)
 fktimer=Array(0,0,0,0,0,0,0,0,0,0)
+//interupt timer, buffer check every 10 second
+fkint=Array(10,Now)
 //end index
 fkattack=3
 //start index
@@ -34,7 +36,7 @@ Function FindTarget()
 End Function
 //ready wait
 Delay 2000
-Rem RUN
+Rem ENHANCE
 For i=fkenhance to 9 step 1
   If fkdelay(i)>0 and DateDiff("s",fktimer(i),Now)>fkdelay(i) Then
     //keymap f1 is 112, index start form 0
@@ -44,12 +46,16 @@ For i=fkenhance to 9 step 1
     fktimer(i)=Now
   End If
 Next
-Rem FIND
+Rem RUN
+If DateDiff("s",fkint(1),Now)>fkint(0) Then
+    Goto ENHANCE
+End If
 txy=FindTarget()
 If txy(0)<0 and txy(1) <0 Then
   Delay fkspell(0)*1000
   Plugin.Bkgnd.KeyPress hwnd, 112
-  Goto FIND
+  //if no target find goto start to find next
+  Goto RUN
 End If
 For i=1 to fkattack step 1
   If fkspell(i)>0 Then
@@ -57,4 +63,4 @@ For i=1 to fkattack step 1
   Delay fkspell(i)*1000
   End IF
 Next
-Goto RUN
+GOTO RUN
