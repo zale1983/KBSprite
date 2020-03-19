@@ -1,10 +1,11 @@
 UserVar hwnd=111 "background windows handle"
-Dim fkdelay,fkspell,fktimer,fkas,fkae,fkes,fkee,fkint,colorarea
+Dim fkdelay,fkspell,fktimer,fkas,fkae,fkes,fkee,fkii,fkit,colorarea
 fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
 fkspell=Array(0,0,0,0,0,0,0,0,0,0)
 fktimer=Array(0,0,0,0,0,0,0,0,0,0)
 //interupt timer, buffer check every 13 second
-fkint=Array(13,Now)
+fkii=13
+fkit=Now
 //attack index
 fkas=1
 fkae=3
@@ -49,8 +50,8 @@ For i=fkes to fkee step 1
   End If
 Next
 Rem RUN
-If DateDiff("s",fkint(1),Now)>fkint(0) Then
-  fkint(1)=Now
+If DateDiff("s",fkit,Now)>fkii Then
+  fkit=Now
   Goto ENHANCE
 End If
 txy=FindTarget()
