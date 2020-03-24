@@ -29,7 +29,7 @@ For i=0 to 9 step 1
   fktimer(i)=DateAdd("s",-fkdelay(i),Now)
 Next
 Function FindTarget()
-  XY = Plugin.Bkgnd.FindColor hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4)
+  XY = Plugin.Bkgnd.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
   Dim color,result(2)
   color=Split(XY,"|")
   X=Clng(color(0)): Y=Clng(color(1))
