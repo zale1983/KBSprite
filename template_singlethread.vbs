@@ -15,7 +15,8 @@ fkee=8
 colorarea=Array(0,0,1024,768,"1317B")
 //f1, find target
 //f2-f4, target attack, skill attack
-//f5-f9, enhancement skill
+//f5-f9, enhancement skill, cycle skill
+//f9 cycle micro every 30 second, attack static target
 //f10,pickup
 //second
 fkspell(0)=0.4
@@ -23,6 +24,8 @@ fkspell(1)=0.5
 fkspell(2)=2
 fkdelay(4)=1737
 fkspell(4)=4
+fkdelay(8)=30
+fkspell(8)=1
 fkspell(9)=1
 //init key timer
 For i=0 to 9 step 1
@@ -50,10 +53,14 @@ For i=fkes to fkee step 1
   End If
 Next
 Rem RUN
+//key f2, normal attack, greed attack, tiny delay
+Plugin.Bkgnd.KeyPress hwnd, 113
+Delay fkspell(1)*100
 If DateDiff("s",fkit,Now)>fkii Then
   fkit=Now
   Goto ENHANCE
 End If
+//real attack, target attack, normal delay
 txy=FindTarget()
 If txy(0)<0 and txy(1) <0 Then
   //if no target find, pickup, wait, then find next
