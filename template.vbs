@@ -53,6 +53,7 @@ For i=fkes to fkee step 1
   End If
 Next
 Rem RUN
+//check enhancement every fkii=13 second
 If DateDiff("s",fkit,Now)>fkii Then
   fkit=Now
   Goto ENHANCE
@@ -60,18 +61,17 @@ End If
 For i=fkas to fkae step 1
   //real attack, target attack, normal delay
   txy=FindTarget()
-  If txy(0)<0 and txy(1) <0 Then
+  If i=0 and txy(0)<0 and txy(1) <0 Then
     //if no target find, pickup, wait, then find next
     Plugin.Bkgnd.KeyPress hwnd, 121
     Delay fkspell(9)*1000
     Plugin.Bkgnd.KeyPress hwnd, 112
     Goto RUN
-  Else
-    If i>0 and fkspell(i)>0 Then
-    //if target find, attack, next fkey, re-check target
-    Plugin.Bkgnd.KeyPress hwnd, 111+i+1
-    Delay fkspell(i)*1000
-    End IF
   End If
+  If i>0 and fkspell(i)>0 and txy(0)>0 and txy(1)>0 Then
+      //if target find, attack, next fkey, re-check target
+      Plugin.Bkgnd.KeyPress hwnd, 111+i+1
+      Delay fkspell(i)*1000
+  End IF
 Next
 GOTO RUN
