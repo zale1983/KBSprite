@@ -1,38 +1,45 @@
-UserVar hwnd=111 "background windows handle"
-Dim fkdelay,fkspell,fktimer,fkas,fkae,fkes,fkee,fkii,fkit,colorarea
-fkdelay=Array(0,0,0,0,0,0,0,0,0,0)
-fkspell=Array(0,0,0,0,0,0,0,0,0,0)
-fktimer=Array(0,0,0,0,0,0,0,0,0,0)
-//interupt timer, buffer check every 13 second
-fkii=13
-fkit=Now
-//attack index
-fkas=0
-fkae=3
-//enhancement index
-fkes=4
-fkee=8
-colorarea=Array(0,0,1024,768,"1317B")
-//f1, find target
+//file example
+//123456
+//0,0,0,0,1731,0,0,0,30,0
+//0.4,0.5,2,4,6,0,0,0,1,1
+//13
+//0
+//3
+//4
+//8
+//0,0,1024,768,12345
+Dim configText,configArr,hwnd,fkdelay,fkspell,fkii,fkas,fkae,fkes,fkee,colorarea
+configText = Plugin.File.ReadEx("config.txt")
+configArr = Split(configText,"|")
+//f1, find target5
 //f2-f4, target attack, skill attack
 //f5-f9, enhancement skill, cycle skill
 //f9 cycle micro every 30 second, attack static target
 //f10,pickup
-//second
-fkspell(0)=0.4
-fkspell(1)=0.5
-fkspell(2)=2
-fkdelay(4)=1737
-fkspell(4)=4
-fkdelay(8)=30
-fkspell(8)=1
-fkspell(9)=1
+If UBound(configArr) = 8 Then
+  hwnd=Clng(configArr(0))
+  //this is a str array, Clng, convert to long before use
+  fkdelay=Split(Cstr(configArr(1)),",")
+  fkspell=Split(Cstr(configArr(2)),",")
+  //interupt interval, 13 second
+  fkii=Cint(configArr(3))
+  //attack start end key index
+  fkas=Cint(configArr(4))
+  fkae=Cint(configArr(5))
+  //enhancement start end key index
+  fkes=Cint(configArr(6))
+  fkee=Cint(configArr(7))
+  colorarea=Split(Cstr(config(8)),",")
+End If
 //init key timer
+Dim fkit,fktimer
+fktimer=Array(0,0,0,0,0,0,0,0,0,0)
+fkit=Now
 For i=0 to 9 step 1
-  fktimer(i)=DateAdd("s",-fkdelay(i),Now)
+  fktimer(i)=DateAdd("s",-Clng(fkdelay(i)),Now)
 Next
 Function FindTarget()
-  XY = Plugin.Bkgnd.FindColor(hwnd,colorarea(0),colorarea(1),colorarea(2),colorarea(3),colorarea(4))
+  XY = Plugin.Bkgnd.FindColor(hwnd,Clng(colorarea(0)),Clng(colorarea(1)),Clng(colorarea(2)),Clng(colorarea(3)),colorarea(4))
   Dim color,result(2)
   color=Split(XY,"|")
   X=Clng(color(0)): Y=Clng(color(1))
@@ -44,11 +51,11 @@ End Function
 Delay 2000
 Rem ENHANCE
 For i=fkes to fkee step 1
-  If fkdelay(i)>0 and DateDiff("s",fktimer(i),Now)>fkdelay(i) Then
+  If Clng(fkdelay(i))>0 and DateDiff("s",fktimer(i),Now)>Clng(fkdelay(i)) Then
     //keymap f1 is 112, index start form 0
     Plugin.Bkgnd.KeyPress hwnd,111+i+1
     //nono second
-    Delay fkspell(i)*1000
+    Delay Clng(fkspell(i))*1000
     fktimer(i)=Now
   End If
 Next
@@ -64,14 +71,14 @@ For i=fkas to fkae step 1
   If i=0 and txy(0)<0 and txy(1) <0 Then
     //if no target find, pickup, wait, then find next
     Plugin.Bkgnd.KeyPress hwnd, 121
-    Delay fkspell(9)*1000
+    Delay Clng(fkspell(9))*1000
     Plugin.Bkgnd.KeyPress hwnd, 112
     Goto RUN
   End If
-  If i>0 and fkspell(i)>0 and txy(0)>0 and txy(1)>0 Then
+  If i>0 and Clng(fkspell(i))>0 and txy(0)>0 and txy(1)>0 Then
       //if target find, attack, next fkey, re-check target
       Plugin.Bkgnd.KeyPress hwnd, 111+i+1
-      Delay fkspell(i)*1000
+      Delay Clng(fkspell(i))*1000
   End IF
 Next
 GOTO RUN
