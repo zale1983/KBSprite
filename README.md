@@ -1,2 +1,2 @@
-# keyboardSimulator
-Game bot using keyboard simulator
+# KBSprite
+Game bot impl. by anjian sprite
